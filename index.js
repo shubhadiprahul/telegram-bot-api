@@ -1,6 +1,16 @@
+const express = require('express');
+const app = express();
 const TelegramBot = require("node-telegram-bot-api");
 const token = "2068958444:AAFeZ4dUtkmWmXp8XFK91J7Uwx0qoud1wTA";
 const bot = new TelegramBot(token, { polling: true });
+
+const PORT = process.env.PORT ||2021;
+app.use(express.json());
+app.use(express.urlencoded());
+
+app.get('/', (req, res) => {
+    res.send({"Success": "Welcome! welcome ............Home page"});
+})
 
 calculator = (number_text)=>{
     var user = number_text
@@ -104,3 +114,7 @@ const init = (bot) =>{
     })
 }
 init(bot)
+
+app.listen(PORT, () => {
+    console.log(`Server is runnig on PORT ${PORT}: http://localhost:2021/`);
+})
