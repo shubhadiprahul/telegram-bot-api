@@ -12,13 +12,12 @@ app.get('/', (req, res) => {
     res.send({"Success": "Welcome! welcome ............Home page"});
 })
 
-calculator = (number_text)=>{
+var calculator = (number_text)=>{
     var user = number_text
-    console.log(user);
         var ListOfElement = [];
         var number = '';
         var opration = '';
-        var True = true;
+        var True = false;
         var ListOfElementop=['**','/','*','-','+']
         var i = 0;
         while (i<user.length){
@@ -45,7 +44,7 @@ calculator = (number_text)=>{
             if (ListOfElement.length==1){
                 break
             }
-            
+
             var j=0
             while (j < ListOfElementop.length){
                 i=0
@@ -61,10 +60,7 @@ calculator = (number_text)=>{
                 j++;
             }
             var oprator = (ListOfElement[i])
-            if (oprator == '**'){
-                NewNumber = (ListOfElement[i-1]) ** (ListOfElement[i+1])
-                OprationConditions = true;
-            }else if(oprator == '/'){
+            if(oprator == '/'){
                 NewNumber = (ListOfElement[i-1]) / (ListOfElement[i+1])
                 OprationConditions = true;
             }else if (oprator == '*' ){
@@ -102,12 +98,11 @@ const init = (bot) =>{
         let message = msg.text.toString()
         let condition = number_text_checker(message)
         if (condition){
-
             answer = calculator(message)
-            if (answer==="NaN"){
+            if (isNaN(answer)){
                 bot.sendMessage(msg.from.id,"Please send a valid Questions")
             }else{
-            bot.sendMessage(msg.from.id, "Your answer is " + answer);
+                bot.sendMessage(msg.from.id, "Your answer is " + answer);
             }
 
         }
