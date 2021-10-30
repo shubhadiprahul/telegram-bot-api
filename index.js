@@ -105,6 +105,8 @@ const init = (bot) =>{
                 bot.sendMessage(msg.from.id, "Your answer is " + answer);
             }
 
+        }else{
+            bot.sendMessage(msg.from.id,"enter valid opration")
         }
     })
 }
