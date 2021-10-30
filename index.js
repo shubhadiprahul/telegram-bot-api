@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
     res.send({"Success": "Welcome! welcome ............Home page"});
 })
 
+
 var calculator = (number_text)=>{
     var user = number_text
         var ListOfElement = [];
